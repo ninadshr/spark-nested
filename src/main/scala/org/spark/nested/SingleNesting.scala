@@ -30,5 +30,11 @@ class SingleNesting {
     val nested_insert = "insert into table nested_customer select * from nestedCustomers"
     spark.sql(nested_insert)
   }
+  
+  def selectCustomerNestingHive(spark: SparkSession) = {
+    val selectQuery = "select distinct customer_ts.street_address from nested_customer lateral view explode(address) " +
+      "exploded_table as customer_ts where customer_id = 1 "
+    spark.sql(selectQuery).show()
+  }
 
 }

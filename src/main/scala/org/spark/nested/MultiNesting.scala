@@ -33,9 +33,8 @@ class MultiNesting extends Serializable{
     //implicitly convert into dataframe and insert into nested transaction table
     val cogroupedDF = tmp.toDF()
     cogroupedDF.createOrReplaceTempView("cogrouped")
-    val nested_insert = "insert into table transaction_nested_create select * from cogrouped"
+    val nested_insert = "insert into table transaction_nested select * from cogrouped"
     spark.sql(nested_insert)
-    spark.sql("select * from transaction_nested_create").show
   }
 
   //restructuring co-grouped rdd to match target schema
@@ -63,4 +62,17 @@ class MultiNesting extends Serializable{
       e1(5).toString().toInt, BigDecimal(e1(6).toString()),
       seq))
   }
+  
+  def selectTransactionTypeHive(spark: SparkSession) = {
+    val selectQuery = "select distinct tDet.TRANSCATION_TYPE from transaction_nested lateral view explode(transaction_details) as tDet"
+    spark.sql(selectQuery).show()
+  }
+  
+  def selectShipmentIdHive(spark: SparkSession) = {
+//    val selectQuery = "select * from transaction_nested"
+    val selectQuery = "select S.SHIPMENT_ID from (select distinct tDet.SHIPMENT_DETAILS as SHIPMENT_DETAILS from transaction_nested lateral " + 
+      "view explode(item_details) as tDet where customer_id = 2) t lateral view explode(t.SHIPMENT_DETAILS) as S"
+    spark.sql(selectQuery).show()
+  }
+  
 }

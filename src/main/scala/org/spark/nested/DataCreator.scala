@@ -73,8 +73,8 @@ class DataCreator {
   }
 
   def createTransactionNestingHive(spark: SparkSession) = {
-    spark.sql("drop table if exists transaction_nested_create	")
-    val transaction_nested_create = "create table transaction_nested_create (CUSTOMER_ID INT, TRANSACTION_ID INT, " +
+    spark.sql("drop table if exists transaction_nested	")
+    val transaction_nested_create = "create table transaction_nested (CUSTOMER_ID INT, TRANSACTION_ID INT, " +
       "transaction_details array<struct<TRANSCATION_TYPE:STRING,STATUS:STRING, INITIATION_DATE:STRING, END_DATE:STRING>>," +
       "item_details array<struct<TRANSAC_ITEM_ID:INT, ITEM_ID:INT, QUANTITY:INT, PRICE:DECIMAL(38,10), DISCOUNT:INT, PAYABLE:DECIMAL(38,10)," +
       "SHIPMENT_DETAILS: array<struct<SHIPMENT_ID:INT, ADDRESS:STRING, SHIP_DATE:STRING, ARRIVAL_DATE:STRING>>>>)"

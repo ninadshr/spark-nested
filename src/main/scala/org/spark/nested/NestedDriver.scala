@@ -25,16 +25,24 @@ object NestedDriver {
       spark.conf.set("spark.shuffle.spill.compress", "false")
     }
 
+    //creating all data tables. Need t run just once
+    createAllDataTable(spark)
+
     //Inserts data into customer table using spark.
     singleNesting.insertcustomerNestingSpark(spark)
-    
+
     //Inserts data into customer table using hive.
     singleNesting.insertcustomerNestingHive(spark)
-    
+
     //Inserts data into transactions table using spark.(Multi-level nesting)
     multiNesting.insertTransactionNestingSpark(spark)
-    
-    
+
+    //Hive select for single nesting
+    singleNesting.selectCustomerNestingHive(spark)
+
+    //Hive select from multi-nesting
+    multiNesting.selectTransactionTypeHive(spark)
+    multiNesting.selectShipmentIdHive(spark)
   }
 
   //Creates all data tables. Refer DataCreator class for structure details
