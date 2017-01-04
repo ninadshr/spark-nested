@@ -3,7 +3,7 @@ package org.spark.nested
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.Row
 
-class MultiNesting {
+class MultiNesting extends Serializable{
   
   def insertTransactionNestingSpark(spark: SparkSession) = {
 
@@ -32,6 +32,7 @@ class MultiNesting {
 
     //implicitly convert into dataframe and insert into nested transaction table
     val cogroupedDF = tmp.toDF()
+    cogroupedDF.createOrReplaceTempView("cogrouped")
     val nested_insert = "insert into table transaction_nested_create select * from cogrouped"
     spark.sql(nested_insert)
     spark.sql("select * from transaction_nested_create").show
