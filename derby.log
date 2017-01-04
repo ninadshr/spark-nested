@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Jan 04 13:49:41 EST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0159-6ad0-bafb-00000cd8ff10 
+on database directory /Users/ninad/Code_Repo/spark-nested-parent/spark-nested/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@5a12c728 
+Loaded from file:/Users/ninad/.m2/repository/org/apache/derby/derby/10.10.2.0/derby-10.10.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_92-b14
+user.dir=/Users/ninad/Code_Repo/spark-nested-parent/spark-nested
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.11.6
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
