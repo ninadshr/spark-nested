@@ -4,35 +4,6 @@ import org.apache.spark.sql.SparkSession
 
 class DataCreator {
 
-  def main(args: Array[String]): Unit = {
-
-    val runLocal = (args.length == 1 && args(0).equals("runlocal"))
-    var spark: SparkSession = null
-    val warehouseLocation = "/Users/ninad/local_database/"
-
-    if (runLocal) {
-      spark = SparkSession
-        .builder().master("local")
-        .appName("NestedStructures")
-        .config("spark.sql.warehouse.dir", warehouseLocation)
-        .enableHiveSupport()
-        .getOrCreate()
-
-      spark.conf.set("spark.broadcast.compress", "false")
-      spark.conf.set("spark.shuffle.compress", "false")
-      spark.conf.set("spark.shuffle.spill.compress", "false")
-    }
-
-    createcustomerDetails(spark)
-    createSamplecustomerPayments(spark)
-    createcustomerTransaction(spark)
-    createTransactionDetails(spark)
-    createShipmentDetails(spark)
-    createTransactionNestingHive(spark)
-    createcustomerNestingHive(spark)
-
-  }
-
   def createcustomerDetails(spark: org.apache.spark.sql.SparkSession) = {
     spark.sql("drop table if exists customer_details")
     spark.sql("create external table customer_details (customer_ID	LONG, NAME STRING, SUBSCRIPTION_TYPE STRING, STREET_ADDRESS STRING,	CITY STRING," +
