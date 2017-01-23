@@ -9,8 +9,7 @@ object NestedDriver {
     val runLocal = (args.length == 1 && args(0).equals("runlocal"))
     var spark: SparkSession = null
     val warehouseLocation = "/Users/ninad/local_database/"
-    val singleNesting: SingleNesting = new SingleNesting()
-    val multiNesting: MultiNesting = new MultiNesting()
+    val singleNesting: NestingExamples = new NestingExamples()
 
     if (runLocal) {
       spark = SparkSession
@@ -25,24 +24,15 @@ object NestedDriver {
       spark.conf.set("spark.shuffle.spill.compress", "false")
     }
 
-    //creating all data tables. Need t run just once
+    //creating all data tables. Need to run just once
     createAllDataTable(spark)
 
-    //Inserts data into customer table using spark.
-    singleNesting.insertcustomerNestingSpark(spark)
+    singleNesting.insertCustomerNestingSql(spark)
+    singleNesting.insertCustomerPayment(spark)
+    singleNesting.insertTransactionApi(spark)
+    singleNesting.selectShippingSql(spark)
+    singleNesting.selectShippingApi(spark)
 
-    //Inserts data into customer table using hive.
-    singleNesting.insertcustomerNestingHive(spark)
-
-    //Inserts data into transactions table using spark.(Multi-level nesting)
-    multiNesting.insertTransactionNestingSpark(spark)
-
-    //Hive select for single nesting
-    singleNesting.selectCustomerNestingHive(spark)
-
-    //Hive select from multi-nesting
-    multiNesting.selectTransactionTypeHive(spark)
-    multiNesting.selectShipmentIdHive(spark)
   }
 
   //Creates all data tables. Refer DataCreator class for structure details
