@@ -2,6 +2,12 @@ package org.spark.nested
 
 import org.apache.spark.sql.SparkSession
 
+/*
+ * Uses Spark 2.0
+ * Driver to initiate Nesting spark application locally.
+ * Creates hive tables locally and performs insertions and selection
+ * on them.
+ */
 object NestedDriver {
 
   def main(args: Array[String]): Unit = {
@@ -11,7 +17,7 @@ object NestedDriver {
     val warehouseLocation = "/Users/ninad/local_database/"
     val singleNesting: NestingExamples = new NestingExamples()
 
-    if (runLocal) {
+    if (true) {
       spark = SparkSession
         .builder().master("local[1]")
         .appName("NestedStructures")

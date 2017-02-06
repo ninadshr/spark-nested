@@ -1,1 +1,5 @@
 /target/
+
+metastore_db/seg0/c10.dat
+
+*.dat
