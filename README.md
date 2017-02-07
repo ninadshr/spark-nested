@@ -1,4 +1,4 @@
-Spark Nesting Examples
+#Spark Nesting Examples
 
 This repo provides quick samples of how to handle complex types in Spark using bith its API and SQL format. 
 
