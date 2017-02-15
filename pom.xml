@@ -61,6 +61,26 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+ 	<!--plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>org.spark.nested.NestedDriver</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>-->
 		</plugins>
 	</build>
 
@@ -73,49 +93,17 @@
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_2.11</artifactId>
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<version>2.0.0</version>
-			<scope>compile(*)</scope>
+			<version>2.0.0.cloudera1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-sql_2.11</artifactId>
 			<version>2.0.0.cloudera1</version>
-			<scope>compile(*)</scope>
-=======
-			<version>2.0.0.cloudera.beta2</version>
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
-=======
-			<version>2.0.0.cloudera.beta2</version>
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-hive_2.11</artifactId>
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<version>2.0.0</version>
-			<scope>compile(*)</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-catalyst_2.11</artifactId>
 			<version>2.0.0.cloudera1</version>
-			<scope>compile(*)</scope>
-=======
-=======
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
-			<version>2.0.0.cloudera.beta2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.xerial.snappy</groupId>
-			<artifactId>snappy-java</artifactId>
-			<version>1.1.2.6</version>
-<<<<<<< HEAD
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
-=======
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
 		</dependency>
 	</dependencies>
 	

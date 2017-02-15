@@ -14,14 +14,14 @@ object NestedDriver {
 
     val runLocal = (args.length == 1 && args(0).equals("runlocal"))
     var spark: SparkSession = null
-    val warehouseLocation = "/Users/ninad/local_database/"
+    //val warehouseLocation = "/Users/ninad/local_database/"
     val singleNesting: NestingExamples = new NestingExamples()
 
     if (true) {
       spark = SparkSession
-        .builder().master("local[1]")
+        .builder().master("local")
         .appName("NestedStructures")
-        .config("spark.sql.warehouse.dir", warehouseLocation)
+        //.config("spark.sql.warehouse.dir", warehouseLocation)
         .enableHiveSupport()
         .getOrCreate()
 
@@ -31,7 +31,7 @@ object NestedDriver {
     }
 
     //creating all data tables. Need to run just once
-    createAllDataTable(spark)
+//    createAllDataTable(spark)
 
     singleNesting.insertCustomerNestingSql(spark)
     singleNesting.insertCustomerPayment(spark)
