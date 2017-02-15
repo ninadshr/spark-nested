@@ -19,7 +19,7 @@ object NestedDriver {
 
     if (true) {
       spark = SparkSession
-        .builder().master("local")
+        .builder().master("yarn")
         .appName("NestedStructures")
         //.config("spark.sql.warehouse.dir", warehouseLocation)
         .enableHiveSupport()
