@@ -33,7 +33,7 @@ object NestedDriver {
     //creating all data tables. Need to run just once
     createAllDataTable(spark)
 
-    singleNesting.insertCustomerNestingSql(spark)
+    singleNesting.insertCustomerNestingSql(spark) 
     singleNesting.insertCustomerPayment(spark)
     singleNesting.insertTransactionApi(spark)
     singleNesting.selectShippingSql(spark)

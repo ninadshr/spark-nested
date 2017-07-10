@@ -72,50 +72,24 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-core_2.11</artifactId>
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<version>2.0.0</version>
-			<scope>compile(*)</scope>
+			<artifactId>spark-core_2.11</artifactId >
+			<version>2.0.0</version >
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-sql_2.11</artifactId>
-			<version>2.0.0.cloudera1</version>
-			<scope>compile(*)</scope>
-=======
-			<version>2.0.0.cloudera.beta2</version>
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
-=======
-			<version>2.0.0.cloudera.beta2</version>
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
+			<artifactId>spark-sql_2.11</artifactId >
+			<version>2.0.0</version >
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-hive_2.11</artifactId>
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<version>2.0.0</version>
-			<scope>compile(*)</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-catalyst_2.11</artifactId>
-			<version>2.0.0.cloudera1</version>
-			<scope>compile(*)</scope>
-=======
-=======
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
-			<version>2.0.0.cloudera.beta2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.xerial.snappy</groupId>
-			<artifactId>snappy-java</artifactId>
-			<version>1.1.2.6</version>
-<<<<<<< HEAD
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
-=======
->>>>>>> 0e6516c76ebd8de1331ac7661eebcd472c2e1112
+			<artifactId>spark-hive_2.11</artifactId >
+			<version>2.0.0</version >
+			<exclusions>
+				<exclusion>
+					<groupId>org.spark-project.hive</groupId>
+					<artifactId>hive-exec</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	
