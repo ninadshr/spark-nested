@@ -12,32 +12,37 @@ object NestedDriver {
 
   def main(args: Array[String]): Unit = {
 
-    val runLocal = (args.length == 1 && args(0).equals("runlocal"))
+    val runLocal = (args.length == 1 && args(0).equals("yarn"))
     var spark: SparkSession = null
-    val warehouseLocation = "/Users/ninad/local_database/"
-    val singleNesting: NestingExamples = new NestingExamples()
+    val nestingExample: NestingExamples = new NestingExamples()
 
-    if (true) {
-      spark = SparkSession
-        .builder().master("local[1]")
+    if (!runLocal) {
+      val warehouseLocation = "/Users/ninad/local_database/"
+	spark = SparkSession
+        .builder().master("local[2]")
         .appName("NestedStructures")
         .config("spark.sql.warehouse.dir", warehouseLocation)
         .enableHiveSupport()
         .getOrCreate()
-
       spark.conf.set("spark.broadcast.compress", "false")
       spark.conf.set("spark.shuffle.compress", "false")
       spark.conf.set("spark.shuffle.spill.compress", "false")
+    }else {
+	spark = SparkSession
+        .builder().master("yarn")
+        .appName("NestedStructures")
+        .enableHiveSupport()
+        .getOrCreate()
     }
 
     //creating all data tables. Need to run just once
     createAllDataTable(spark)
 
-    singleNesting.insertCustomerNestingSql(spark) 
-    singleNesting.insertCustomerPayment(spark)
-    singleNesting.insertTransactionApi(spark)
-    singleNesting.selectShippingSql(spark)
-    singleNesting.selectShippingApi(spark)
+    nestingExample.insertCustomerNestingSql(spark)
+    nestingExample.insertCustomerPayment(spark)
+    nestingExample.insertTransactionApi(spark)
+    nestingExample.selectShippingSql(spark)
+    nestingExample.selectShippingApi(spark)
 
   }
 

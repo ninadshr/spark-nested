@@ -32,7 +32,7 @@ object ParallelExec {
     val df2 = spark.range(11l, 2000000000l)
 
     val f: Future[Long] = Future {
-      df.count()
+      df.count() //This can be any action you want to execute in parallel
     }
 
     val f2: Future[Long] = Future {
